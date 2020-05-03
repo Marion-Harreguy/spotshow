@@ -19,7 +19,7 @@ class Platform
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\serie", mappedBy="platform")
+     * @ORM\Column(type="string", length=20)
      */
     private $name;
 
@@ -38,33 +38,14 @@ class Platform
         return $this->id;
     }
 
-    /**
-     * @return Collection|serie[]
-     */
-    public function getName(): Collection
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function addName(serie $name): self
+    public function setName(string $name): self
     {
-        if (!$this->name->contains($name)) {
-            $this->name[] = $name;
-            $name->setPlatform($this);
-        }
-
-        return $this;
-    }
-
-    public function removeName(serie $name): self
-    {
-        if ($this->name->contains($name)) {
-            $this->name->removeElement($name);
-            // set the owning side to null (unless already changed)
-            if ($name->getPlatform() === $this) {
-                $name->setPlatform(null);
-            }
-        }
+        $this->name = $name;
 
         return $this;
     }

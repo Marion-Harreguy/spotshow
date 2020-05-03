@@ -46,12 +46,6 @@ class Serie
      */
     private $updatedAt;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Platform", inversedBy="name")
-     */
-    private $platform;
-
-
     public function getId(): ?int
     {
         return $this->id;
@@ -125,18 +119,6 @@ class Serie
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function getPlatform(): ?Platform
-    {
-        return $this->platform;
-    }
-
-    public function setPlatform(?Platform $platform): self
-    {
-        $this->platform = $platform;
 
         return $this;
     }
