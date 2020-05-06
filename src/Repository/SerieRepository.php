@@ -19,13 +19,13 @@ class SerieRepository extends ServiceEntityRepository
         parent::__construct($registry, Serie::class);
     }
 
-    // /**
-    //  * @return Serie[] Returns an array of Serie objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+    * @return Serie[] Returns an array of Serie objects
+    */
+    /*public function findAllWithPlatform()
     {
         return $this->createQueryBuilder('s')
+            ->innerJoin()
             ->andWhere('s.exampleField = :val')
             ->setParameter('val', $value)
             ->orderBy('s.id', 'ASC')
