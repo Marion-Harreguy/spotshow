@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Platform;
 use App\Entity\Serie;
+use App\Form\SerieType;
 use App\Repository\SerieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     /**
-     * @Route("/", name="browse")
+     * @Route("/", name="browse", methods={"GET"})
      */
     public function browse(SerieRepository $serieRepository)
     {   
@@ -40,12 +41,12 @@ class MainController extends AbstractController
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() & $form->isValid()) {
-            $em->persist($serie);
-            $em->flush();
+        // if($form->isSubmitted() & $form->isValid()) {
+        //     $em->persist($serie);
+        //     $em->flush();
 
-            return $this->redirectToRoute('');
-        }
+        //     return $this->redirectToRoute('');
+        // }
 
         return $this->render('main/add.html.twig', [
             'form' => $form->createView(),
