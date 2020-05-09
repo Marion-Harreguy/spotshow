@@ -34,8 +34,10 @@ class MainController extends AbstractController
     /**
      * @Route("/series", name="add")
      */
-    public function add(EntityManagerInterface $em, Request $request)
+    public function add(EntityManagerInterface $em, Request $request, SerieRepository $serieRepository)
     {   
+        $series = $serieRepository->findAllByGenre();
+
         $serie = new Serie();
         $form = $this->createForm(SerieType::class, $serie);
 
@@ -50,6 +52,7 @@ class MainController extends AbstractController
 
         return $this->render('main/add.html.twig', [
             'form' => $form->createView(),
+            'series' => $series,
         ]);
     }
 }
