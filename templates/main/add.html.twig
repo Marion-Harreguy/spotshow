@@ -7,12 +7,12 @@
 <main class="container mt-5 mb-5">
 {# <h3>Ajouter une série ou un film</h3> #}
 <form class="container-form border border-white p-5">
-  <div class="form-group mb-3">
+  <div class="form-group mb-4">
     <h5>Titre série/film</h5>
       <input type="title" class="form-control" id="inputTitle" aria-describedby="titleHelp" placeholder="Titre">
   </div>
   <hr class="border-light">
-  <div class="form-group mb-3">
+  <div class="form-group mb-4">
     <h5>Type</h5>
       <div class="form-check">
         <label class="form-check-label">
@@ -29,7 +29,7 @@
       </div>
   </div>
   <hr class="border-light">
-  <div class="form-group mb-3">
+  <div class="form-group mb-4">
     <h5>Genre</h5>
       <select class="custom-select">
         <option selected="">Genre</option>
@@ -37,25 +37,24 @@
         <option value="{{ serie.id }} ">{{ serie.genre }}</option>
         {% endfor %}
       </select>
-    </div>
-    <hr class="border-light">
-    <div class="form-group mb-3">
+  </div>
+  <hr class="border-light">
+  <div class="form-group mb-4">
     <h5>Note</h5>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1">
-          Top
-        </label>
+    <div class="form-inline">
+      <div class="btn-toolbar col-md-0">
+        <button type="button-top" style="width:60px" class="btn btn-info">Top</button>
       </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
-          Flop
-        </label>
+      <div class="btn-toolbar col-md-11">
+        <button type="button-flop" style="width:60px" class="btn btn-warning">Flop</button>
       </div>
-    <div class="button mt-3">
-      <button type="submit" class="btn btn-secondary">Envoyer</button>
     </div>
+  </div>
+  <hr class="border-light">
+  <div class="button mt-4">
+    <button type="submit" class="btn btn-secondary">Envoyer</button>
+  </div>
+  </div>
 </form>
 </main>
 
