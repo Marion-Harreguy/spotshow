@@ -18,6 +18,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     /**
+     * Fonction qui liste toutes les éries et tous les films
+     * 
      * @Route("/", name="browse", methods={"GET"})
      */
     public function browse(SerieRepository $serieRepository)
@@ -32,23 +34,29 @@ class MainController extends AbstractController
     }
 
     /**
+     * Fonction permettant d'ajouter une série ou un film
+     * 
      * @Route("/series", name="add")
      */
     public function add(EntityManagerInterface $em, Request $request, SerieRepository $serieRepository)
     {   
+        // on récupère les datas de $serieRepository avec les genres classés par ordre alphabétique
         $series = $serieRepository->findAllByGenre();
-
+        
         $serie = new Serie();
+
         $form = $this->createForm(SerieType::class, $serie);
 
         $form->handleRequest($request);
 
-        // if($form->isSubmitted() & $form->isValid()) {
-        //     $em->persist($serie);
-        //     $em->flush();
+        if($form->isSubmitted() && $form->isValid()) {
+            $em->persist($serie);
+            $em->flush();
 
-        //     return $this->redirectToRoute('');
-        // }
+            return $this->redirectToRoute('main_browse');
+        }
+
+        // $error = $form->getErrors();
 
         return $this->render('main/add.html.twig', [
             'form' => $form->createView(),

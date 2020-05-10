@@ -6,7 +6,9 @@
 <!-- card -->
 <main class="container mt-5 mb-5">
 {# <h3>Ajouter une série ou un film</h3> #}
-<form class="container-form border border-white p-5">
+
+<!-- form -->
+{# <form class="container-form border border-white p-5">
   <div class="form-group mb-4">
     <h5>Titre série/film</h5>
       <input type="title" class="form-control" id="inputTitle" aria-describedby="titleHelp" placeholder="Titre">
@@ -16,13 +18,13 @@
     <h5>Type</h5>
       <div class="form-check">
         <label class="form-check-label">
-          <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1">
+          <input type="radio" class="form-check-input" name="optionsRadios" id="top" value="top">
           Série
         </label>
       </div>
       <div class="form-check">
         <label class="form-check-label">
-          <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+          <input type="radio" class="form-check-input" name="optionsRadios" id="flop" value="flop">
           Film
         </label>
       </div>
@@ -57,7 +59,43 @@
     <button type="submit" class="btn btn-secondary">Envoyer</button>
   </div>
   </div>
-</form>
+</form> #}
+
+
+{{ form_start(form) }}
+  <div class="form-group mb-4">
+    <h5>Titre série/film</h5>
+
+    {# Affichage des erreurs pour ce champ précis. #}
+    {# {{ form_errors(form.title) }} #}
+
+    {# Génération de l'input 'Titre' #}
+    {{ form_widget(form.title) }}
+  </div>
+  <hr class="border-light">
+  <div class="form-group mb-4">
+  {# Génération de l'input 'Type' #}
+    <h5>Type</h5>
+    <div class="form-group">
+        <label class="form-check-label">
+        {{ form_widget(form.type) }}
+        </label>
+    </div>
+  </div>
+  <hr class="border-light">
+    {# Génération de l'input 'Genre' #}
+  <div class="form-group mb-4">
+    <h5>Genre</h5>
+    <div class="form-group">
+        <label class="form-check-label">
+        {{ form_widget(form.genre) }}
+        </label>
+    </div>
+  </div
+
+
+{{ form_end(form) }}
+
 </main>
 
 {% endblock %}
