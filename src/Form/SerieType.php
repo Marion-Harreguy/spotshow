@@ -3,8 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Serie;
+use App\Repository\PlatformRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -12,13 +15,24 @@ use Symfony\Component\Validator\Constraints\NotNull;
 
 class SerieType extends AbstractType
 {
+    private $platformRepository;
+
+    public function __construct(platformRepository $platformRepository)
+    {
+        $platformRepository = $this->platformRepository;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', null, [
-                'constraints' => [new NotBlank(), new NotNull()]
-            ])
+            ->add('title', TextType::class, [
+                'label' => 'Titre',
+                'constraints' => [
+                    new NotBlank(),
+                    new NotNull(),
+                ]])
             ->add('type', ChoiceType::class, [
+                'label' => 'Type',
                 'placeholder' => 'sélectionnez',
                 'choices' => [
                     'série' => 'serie',
@@ -27,6 +41,7 @@ class SerieType extends AbstractType
                 'required' => true,
             ])
             ->add('genre', ChoiceType::class, [
+                'label' => 'Genre',
                 'placeholder' => 'sélectionnez',
                 'choices'  => [
                     'action' => 'action',
@@ -47,10 +62,31 @@ class SerieType extends AbstractType
                 ],
                 'required' => true,
             ])
-            ->add('rate')
+            ->add('rate', ChoiceType::class, [
+                'label' => 'Note',
+                'placeholder' => 'sélectionnez',
+                'choices' => [
+                    'top' => 'top',
+                    'flop' => 'flop'
+                ],
+                'required' => true,
+            ])
             // ->add('createdAt')
             // ->add('updatedAt')
-            // ->add('platform')
+            ->add('platform', ChoiceType::class, [
+                'label' => 'Plateforme',
+                'placeholder' => 'sélectionnez',
+                'choices' => [
+                'Amazon Prime' => '1',
+                'Canal+' => '2',
+                'Netflix' => '3',
+                ],
+                'required' => true,
+                ])
+            // ->add('platform', null, [
+            //     'expanded' => true,
+            //     'multiple' => true,
+            // ])
         ;
     }
 

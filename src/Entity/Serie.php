@@ -19,7 +19,6 @@ class Serie
 
     /**
      * @ORM\Column(type="string", length=100, unique=true)
-     * @Assert\Unique(message="The {{ value}} title already exists.")
      */
     private $title;
 
@@ -50,8 +49,14 @@ class Serie
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Platform", inversedBy="series")
+     * @ORM\JoinTable(name="platform")
      */
     private $platform;
+
+    public function __construct()
+    {
+        $this->createdAt = new \Datetime();
+    }
 
     public function getId(): ?int
     {

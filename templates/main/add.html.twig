@@ -6,96 +6,11 @@
 <!-- card -->
 <main class="container mt-5 mb-5">
 {# <h3>Ajouter une série ou un film</h3> #}
-
-<!-- form -->
-{# <form class="container-form border border-white p-5">
-  <div class="form-group mb-4">
-    <h5>Titre série/film</h5>
-      <input type="title" class="form-control" id="inputTitle" aria-describedby="titleHelp" placeholder="Titre">
-  </div>
-  <hr class="border-light">
-  <div class="form-group mb-4">
-    <h5>Type</h5>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input type="radio" class="form-check-input" name="optionsRadios" id="top" value="top">
-          Série
-        </label>
-      </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input type="radio" class="form-check-input" name="optionsRadios" id="flop" value="flop">
-          Film
-        </label>
-      </div>
-      </div>
-  </div>
-  <hr class="border-light">
-  <div class="form-group mb-4">
-    <h5>Genre</h5>
-      <select class="custom-select">
-        <option selected="">Genre</option>
-        {% for serie in series %}
-        <option value="{{ serie.id }} ">{{ serie.genre }}</option>
-        {% endfor %}
-      </select>
-  </div>
-  <hr class="border-light">
-  <div class="form-group mb-3">
-    <h5>Note</h5>
-    <div class="form-inline mt-3">
-      <div class="form-check col-md-0">
-        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1">
-          <h5><span class="badge badge-info p-2 font-weight-normal" style="width:60px"><small>Top</small></span></h5>
-      </div>
-      <div class="form-check col-md-3">
-        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
-          <h5><span class="badge badge-warning p-2 font-weight-normal" style="width:60px"><small>Flop</small></span></h5>
-      </div>
-    </div>
-  </div>
-  <hr class="border-light">
-  <div class="button mt-4">
-    <button type="submit" class="btn btn-secondary">Envoyer</button>
-  </div>
-  </div>
-</form> #}
-
-
 {{ form_start(form) }}
-  <div class="form-group mb-4">
-    <h5>Titre série/film</h5>
-
-    {# Affichage des erreurs pour ce champ précis. #}
-    {# {{ form_errors(form.title) }} #}
-
-    {# Génération de l'input 'Titre' #}
-    {{ form_widget(form.title) }}
-  </div>
-  <hr class="border-light">
-  <div class="form-group mb-4">
-  {# Génération de l'input 'Type' #}
-    <h5>Type</h5>
-    <div class="form-group">
-        <label class="form-check-label">
-        {{ form_widget(form.type) }}
-        </label>
-    </div>
-  </div>
-  <hr class="border-light">
-    {# Génération de l'input 'Genre' #}
-  <div class="form-group mb-4">
-    <h5>Genre</h5>
-    <div class="form-group">
-        <label class="form-check-label">
-        {{ form_widget(form.genre) }}
-        </label>
-    </div>
-  </div
-
-
+    {{ form_widget(form) }}
+    {# {{ form_row(form.image) }} #}
+    <button type="submit" class="btn btn-info">Envoyez</button>
 {{ form_end(form) }}
-
-</main>
+{#  #}
 
 {% endblock %}

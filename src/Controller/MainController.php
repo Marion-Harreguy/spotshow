@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Platform;
 use App\Entity\Serie;
 use App\Form\SerieType;
+use App\Repository\PlatformRepository;
 use App\Repository\SerieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,14 +19,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     /**
-     * Fonction qui liste toutes les éries et tous les films
+     * Fonction qui liste toutes les séries et tous les films
      * 
      * @Route("/", name="browse", methods={"GET"})
      */
     public function browse(SerieRepository $serieRepository)
     {   
-        $repository = $this->getDoctrine()->getRepository(Platform::class);
-
         $series = $serieRepository->findAll();
 
         return $this->render('main/browse.html.twig', [
@@ -53,14 +52,16 @@ class MainController extends AbstractController
             $em->persist($serie);
             $em->flush();
 
-            return $this->redirectToRoute('main_browse');
+            $this->addFlash('success', "Good job !");
+
+            // return $this->redirectToRoute('main_browse');
         }
 
         // $error = $form->getErrors();
 
         return $this->render('main/add.html.twig', [
             'form' => $form->createView(),
-            'series' => $series,
+
         ]);
     }
 }
