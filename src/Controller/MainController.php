@@ -27,11 +27,8 @@ class MainController extends AbstractController
     {   
         $series = $serieRepository->findAll();
 
-        // $platforms = $serie->getPlatform();
-
         return $this->render('main/browse.html.twig', [
             'series' => $series,
-            // 'platforms' => $platforms,
         ]);
     }
 
@@ -44,7 +41,7 @@ class MainController extends AbstractController
     {   
         // on récupère les datas de $serieRepository avec les genres classés par ordre alphabétique
         $series = $serieRepository->findAllByGenre();
-        
+
         $serie = new Serie();
 
         $form = $this->createForm(SerieType::class, $serie);
@@ -52,12 +49,13 @@ class MainController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+            
             $em->persist($serie);
             $em->flush();
 
             $this->addFlash('success', "Good job !");
 
-            // return $this->redirectToRoute('main_browse');
+            return $this->redirectToRoute('main_browse');
         }
 
         // $error = $form->getErrors();

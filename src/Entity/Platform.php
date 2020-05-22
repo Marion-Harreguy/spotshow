@@ -40,6 +40,7 @@ class Platform
 
     public function __construct()
     {
+        $this->createdAt = new \Datetime();
         $this->series = new ArrayCollection();
     }
 
@@ -102,4 +103,15 @@ class Platform
 
         return $this;
     }
+
+    /**
+     * Gets triggered only on insert
+
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->created = new \DateTime("now");
+    }
+    
 }

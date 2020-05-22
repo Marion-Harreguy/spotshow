@@ -3,10 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Serie;
-use App\Repository\PlatformRepository;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Form\PlatformType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,13 +15,6 @@ use Symfony\Component\Validator\Constraints\NotNull;
 
 class SerieType extends AbstractType
 {
-    private $platformRepository;
-
-    public function __construct(platformRepository $platformRepository)
-    {
-        $platformRepository = $this->platformRepository;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -44,21 +37,21 @@ class SerieType extends AbstractType
                 'label' => 'Genre',
                 'placeholder' => 'sélectionnez',
                 'choices'  => [
-                    'action' => 'action',
-                    'aventure' => 'aventure',
-                    'comédie' => 'comédie',
-                    'documentaire' => 'documentaire',
-                    'drame' => 'drame',
-                    'espionnage'=> 'espionnage',
-                    'fantastique' => 'fantastique',
-                    'guerre' => 'guerre',
-                    'horreur' => 'horreur',
-                    'musical' => 'musical',
-                    'policier' => 'policier',
-                    'science-fiction' => 'science-fiction',
-                    'sketch' => 'sketch',
-                    'thriller' => 'thriller',
-                    'western' => 'western',
+                    'Action' => 'Action',
+                    'Aventure' => 'Aventure',
+                    'Comédie' => 'Comédie',
+                    'Documentaire' => 'Documentaire',
+                    'Drame' => 'Drame',
+                    'Espionnage'=> 'Espionnage',
+                    'Fantastique' => 'Fantastique',
+                    'Guerre' => 'Guerre',
+                    'Horreur' => 'Horreur',
+                    'Musical' => 'Musical',
+                    'Policier' => 'Policier',
+                    'Science-fiction' => 'Science-fiction',
+                    'Sketch' => 'Sketch',
+                    'Thriller' => 'Thriller',
+                    'Western' => 'Western',
                 ],
                 'required' => true,
             ])
@@ -73,20 +66,19 @@ class SerieType extends AbstractType
             ])
             // ->add('createdAt')
             // ->add('updatedAt')
-            ->add('platform', ChoiceType::class, [
+            /*->add('platform', ChoiceType::class, [
                 'label' => 'Plateforme',
                 'placeholder' => 'sélectionnez',
                 'choices' => [
-                'Amazon Prime' => '1',
+                '1' => 'Amazon Prime',
                 'Canal+' => '2',
                 'Netflix' => '3',
                 ],
                 'required' => true,
-                ])
-            // ->add('platform', null, [
-            //     'expanded' => true,
-            //     'multiple' => true,
-            // ])
+                ])*/
+            ->add('platform', PlatformType::class, [
+                'label' => false
+            ])
         ;
     }
 
