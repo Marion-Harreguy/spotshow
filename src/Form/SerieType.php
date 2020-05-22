@@ -35,8 +35,8 @@ class SerieType extends AbstractType
                 'label' => 'Type',
                 'placeholder' => 'sélectionnez',
                 'choices' => [
-                    'série' => 'serie',
-                    'film' => 'film'
+                    'Série' => 'Serie',
+                    'Film' => 'Film'
                 ],
                 'required' => true,
             ])
@@ -66,8 +66,8 @@ class SerieType extends AbstractType
                 'label' => 'Note',
                 'placeholder' => 'sélectionnez',
                 'choices' => [
-                    'top' => 'top',
-                    'flop' => 'flop'
+                    'Top' => 'Top',
+                    'Flop' => 'Flop'
                 ],
                 'required' => true,
             ])

@@ -27,8 +27,11 @@ class MainController extends AbstractController
     {   
         $series = $serieRepository->findAll();
 
+        // $platforms = $serie->getPlatform();
+
         return $this->render('main/browse.html.twig', [
             'series' => $series,
+            // 'platforms' => $platforms,
         ]);
     }
 
