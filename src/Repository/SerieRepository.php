@@ -22,19 +22,31 @@ class SerieRepository extends ServiceEntityRepository
     /**
     * @return Serie[] Returns an array of Serie objects
     */
-    /*public function findAllWithPlatform()
+    public function findAllByGenre()
     {
         return $this->createQueryBuilder('s')
-            ->innerJoin()
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('s.genre', 'ASC')
             ->getQuery()
             ->getResult()
         ;
     }
+
+    /**
+    * @return Serie[] Returns an array of Serie objects
     */
+    // public function findAllByPlatform()
+    // {
+    //     return $this->createQueryBuilder('sp')
+    //         ->innerJoin()
+    //         ->andWhere('s.exampleField = :val')
+    //         ->setParameter('val', $value)
+    //         ->orderBy('s.genre', 'ASC')
+    //         ->setMaxResults(10)
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
+    
 
     /*
     public function findOneBySomeField($value): ?Serie

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SerieRepository")
@@ -17,7 +18,7 @@ class Serie
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, unique=true)
      */
     private $title;
 
@@ -47,9 +48,15 @@ class Serie
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Platform", inversedBy="series")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Platform", inversedBy="series", cascade={"persist"})
+     * @ORM\JoinTable(name="platform")
      */
     private $platform;
+
+    public function __construct()
+    {
+        $this->createdAt = new \Datetime();
+    }
 
     public function getId(): ?int
     {
@@ -138,6 +145,16 @@ class Serie
         $this->platform = $platform;
 
         return $this;
+    }
+
+    /**
+     * Gets triggered only on insert
+
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->created = new \DateTime("now");
     }
 
 }
