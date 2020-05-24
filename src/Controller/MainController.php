@@ -19,9 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     /**
-     * Fonction qui liste toutes les séries et tous les films
-     * 
-     * @Route("/", name="browse", methods={"GET"})
+     * @Route("/", name="browse")
      */
     public function browse(SerieRepository $serieRepository)
     {   
@@ -33,8 +31,41 @@ class MainController extends AbstractController
     }
 
     /**
-     * Fonction permettant d'ajouter une série ou un film
-     * 
+     * @Route("/{id}", name="read", requirements={"id":"\d+"})
+     */
+    public function read(Serie $serie)
+    {   
+        return $this->render('main/read.html.twig', [
+            'serie' => $serie,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="edit", requirements={"id":"\d+"})
+     */
+    public function edit(EntityManagerInterface $em, Request $request, Serie $serie)
+    {   
+        $form = $this->createForm(SerieType::class, $serie);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $serie->setUpdatedAt(new \Datetime());
+
+            $em->flush();
+
+            $this->addFlash('success', "Updated, Good job !");
+
+            return $this->redirectToRoute('main_read', ['id' => $serie->getId()]);
+        }
+
+        return $this->render('main/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @Route("/series", name="add")
      */
     public function add(EntityManagerInterface $em, Request $request, SerieRepository $serieRepository)
@@ -53,16 +84,13 @@ class MainController extends AbstractController
             $em->persist($serie);
             $em->flush();
 
-            $this->addFlash('success', "Good job !");
+            $this->addFlash('success', "Added, Good job !");
 
             return $this->redirectToRoute('main_browse');
         }
 
-        // $error = $form->getErrors();
-
         return $this->render('main/add.html.twig', [
             'form' => $form->createView(),
-
         ]);
     }
 }
