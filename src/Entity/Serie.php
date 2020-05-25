@@ -53,6 +53,11 @@ class Serie
      */
     private $platform;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $Content;
+
     public function __construct()
     {
         $this->createdAt = new \Datetime();
@@ -155,6 +160,18 @@ class Serie
     public function onPrePersist()
     {
         $this->created = new \DateTime("now");
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->Content;
+    }
+
+    public function setContent(?string $Content): self
+    {
+        $this->Content = $Content;
+
+        return $this;
     }
 
 }
