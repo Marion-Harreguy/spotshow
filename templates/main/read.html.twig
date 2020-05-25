@@ -13,8 +13,10 @@
         </div>
         <div class="card-body">
             <h4 class="card-title">{{ serie.title }}</h4>
-            <p class="card-text">{{ serie.type }} / {{ serie.genre }}</p>
-        </div>
+            <hr class="border-secondary">
+            <p class="card-text">{{ serie.content }}</p>
+            <button type="button" class="btn btn-secondary">{{ serie.type }}</button>
+            <button type="button" class="btn btn-secondary">{{ serie.genre }}</button>
         </div>
     </div>
 </main>

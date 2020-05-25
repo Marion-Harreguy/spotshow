@@ -7,9 +7,11 @@ use App\Form\PlatformType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
 
@@ -54,6 +56,15 @@ class SerieType extends AbstractType
                     'Western' => 'Western',
                 ],
                 'required' => true,
+            ])
+            ->add('content', TextareaType::class, [
+                'label' => 'Synopsis',
+                'constraints' =>  [
+                    new Length([
+                        'min' => 2,
+                        'minMessage' => 'Le synopsis était vraiment aussi flop que ça...?'
+                    ])
+                ]
             ])
             ->add('rate', ChoiceType::class, [
                 'label' => 'Note',
