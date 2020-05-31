@@ -8,8 +8,12 @@
 <main class="container d-flex justify-content-center mt-5 mb-5">
     <div class="card border-dark mb-3" style="width: 40rem;">
         <div class="card-header d-flex justify-content-between">
-            <a href=""> {{ serie.platform }}</a>
-            <button type="button" class="btn btn-sm btn-{{ serie.rate ? 'info' : 'warning' }}">{{ serie.rate }}</button>
+            <a href="">{{ serie.platform }}</a>
+            {% if serie.rate == "Top" %}
+                <button type="button" class="btn btn-sm btn-info"><i class="fa fa-heart"></i></button>
+            {% else %}
+                <button type="button" class="btn btn-sm btn-warning"><i class="fa fa-thumbs-down"></i></button>
+            {% endif %}
         </div>
         <div class="card-body">
             <h4 class="card-title">{{ serie.title }}</h4>
