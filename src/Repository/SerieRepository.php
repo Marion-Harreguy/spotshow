@@ -24,12 +24,13 @@ class SerieRepository extends ServiceEntityRepository
     */
     public function findAllByGenre()
     {
-        return $this->createQueryBuilder('s')
-            ->orderBy('s.genre', 'ASC')
-            ->getQuery()
-            ->getResult()
+         return $this->createQueryBuilder('s')
+        ->orderBy('s.genre', 'ASC')
+         ->getQuery()
+        ->getResult()
         ;
     }
+
 
     /**
     * @return Serie[] Returns an array of Serie objects

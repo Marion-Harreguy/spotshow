@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="css/bootstrap.css" >
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" >
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
@@ -13,27 +13,12 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        {# <div class="collapse navbar-collapse" id="navbarColor02"> #}
-            {# <ul class="navbar-nav mr-auto"> #}
-            {# <li class="nav-item active">
-                <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
-            </li> #}
-            {# <li class="nav-item">
-                <a class="nav-link" href="#">Séries</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Films</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Connexion</a>
-            </li>
-            </ul> #}
         <div class="nav-item d-flex justify-content-around">
-            <a class="nav-link" href="#">Séries</a>
+            <a class="nav-link" href="{{ path('serie_index') }}">Séries</a>
             <a class="nav-link" href="#">Films</a>
         </div>
         <form class="form-inline my-2 my-lg-0">
-            <button type="button-inline" class="btn btn-secondary"><a href="{{ path('main_add') }}">Ajouter un spotshow !</a></button>
+            <button type="button-inline" class="btn btn-light"><a href="{{ path('main_add') }}">Ajouter un spotshow !</a></button>
         </form>
     </nav>
         {% block body %}{% endblock %}
