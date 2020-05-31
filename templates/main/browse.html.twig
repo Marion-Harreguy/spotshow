@@ -12,9 +12,9 @@
         <div class="card-header d-flex justify-content-between">
             <a href="">{{ serie.platform }}</a>
             {% if serie.rate == "Top" %}
-                <button type="button" class="btn btn-sm btn-info">{{ serie.rate }}</button>
+                <button type="button" class="btn btn-sm btn-info"><i class="fa fa-heart"></i></button>
             {% else %}
-                <button type="button" class="btn btn-sm btn-warning">{{ serie.rate }}</button>
+                <button type="button" class="btn btn-sm btn-warning"><i class="fa fa-thumbs-down"></i></button>
             {% endif %}
         </div>
         <div class="card-body">
