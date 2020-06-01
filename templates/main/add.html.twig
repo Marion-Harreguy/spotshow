@@ -6,12 +6,13 @@
 <!-- card -->
 <main class="container mt-5 mb-5">
 
-<h3>Ajouter une série ou un film</h3>
+<h3 class="mb-3 text-muted">Ajouter une série ou un film</h3>
 
+<div class="jumbotron">
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button type="submit" class="btn btn-info">Envoyez</button>
+    <button type="submit" class="btn btn-secondary">Envoyez</button>
 {{ form_end(form) }}
-
+</div>
 
 {% endblock %}
