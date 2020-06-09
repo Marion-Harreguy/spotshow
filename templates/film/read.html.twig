@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Spotshow - {{ serie.title }}{% endblock %}
+
+{% block body %}
+
+<!-- card -->
+<main class="container d-flex justify-content-center mt-5 mb-5">
+    <div class="card border-dark mb-3" style="width: 40rem;">
+        <div class="card-header d-flex justify-content-between">
+            <a href="" class="text-muted"> {{ serie.platform }}</a>
+            {% if serie.rate == "Top" %}
+                <button type="button" class="btn btn-sm btn-info"><i class="fa fa-heart"></i></button>
+            {% else %}
+                <button type="button" class="btn btn-sm btn-warning"><i class="fa fa-thumbs-down"></i></button>
+            {% endif %}
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">{{ serie.title }}</h4>
+            <hr class="border-secondary">
+            <p class="card-text">{{ serie.content }}</p>
+            <button type="button" class="btn btn-secondary">{{ serie.type }}</button>
+            <button type="button" class="btn btn-secondary">{{ serie.genre }}</button>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

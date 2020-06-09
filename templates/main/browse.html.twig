@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Spotshow - Liste des series et films{% endblock %}
+
+{% block body %}
+
+<!-- card -->
+<main class="container mt-5 mb-5">
+    <div class="row d-flex justify-content-around">
+    {% for serie in series %}
+        <div class="card border-dark mb-3" style="width: 20rem;">
+        <div class="card-header d-flex justify-content-between">
+            <a href="" class="text-muted">{{ serie.platform }}</a>
+            {% if serie.rate == "Top" %}
+                <button type="button" class="btn btn-sm btn-info"><i class="fa fa-heart"></i></button>
+            {% else %}
+                <button type="button" class="btn btn-sm btn-warning"><i class="fa fa-thumbs-down"></i></button>
+            {% endif %}
+        </div>
+        <div class="card-body">
+        <a href="{{ path('main_read', {'id' : serie.id}) }}">
+            <h4 class="card-title">{{ serie.title }}</h4>
+        </a>
+        <hr class="border-secondary">
+            <p class="card-text">{{ serie.content|slice(0, 80) }}...</p>
+            <button type="button" class="btn btn-secondary">{{ serie.type }}</button>
+            <button type="button" class="btn btn-secondary">{{ serie.genre }}</button>
+        </div>
+        </div>
+    {% endfor %}
+        </div>
+    </div>
+</main>
+
+{% endblock %}
+

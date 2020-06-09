@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Spotshow - Modification d'une serie ou d'un film{% endblock %}
+
+{% block body %}
+<!-- card -->
+<main class="container mt-5 mb-5">
+
+<h3>Modifier une série ou un film</h3>
+
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-info">Envoyez</button>
+{{ form_end(form) }}
+
+
+{% endblock %}

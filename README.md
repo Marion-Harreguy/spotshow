@@ -3,6 +3,7 @@
 **Description**
 
 Site permettant de référencer les séries et les films visionnés par l'entourage familial avec un système de notation.
+<<<<<<< HEAD
 
 
 **Documentation**
@@ -27,3 +28,4 @@ Site permettant de référencer les séries et les films visionnés par l'entour
 - Gestion des erreurs du form 
 
 ![form_errors](/documentation/form_errors.png)
+
